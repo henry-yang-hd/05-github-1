@@ -1,7 +1,40 @@
 ---
-title: "Untitled"
+title: "A Beautiful Graphic"
 format: html
 author: "Henry Yang"
+execute:
+  echo: false
 ---
 
 Henry Yang is a data maestro!
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+```{r}
+#| message: false
+#| warning: false
+
+library(ggplot2)
+
+# Create a beautiful scatter plot of engine displacement vs. highway miles per gallon
+ggplot(data = mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_color_viridis_d(option = "plasma") +
+  labs(
+    title = "Fuel Efficiency vs. Engine Size",
+    subtitle = "Data from 1999 and 2008 for popular car models",
+    x = "Engine Displacement (Liters)",
+    y = "Highway MPG",
+    color = "Vehicle Class",
+    caption = "Source: EPA (mpg dataset)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    plot.subtitle = element_text(color = "gray40"),
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+```
